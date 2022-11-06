@@ -6,12 +6,23 @@ setlocale(LC_ALL, 'ru_RU.UTF-8');
 $text = file_get_contents('./book.txt');
 
 $pieces = explode(".", $text);
-
-$page = " ";
-
+$suggestions = "";
+$page=array("","");
+$p=0;
+$countPoint = 0;
+for($j=0; $j<100; $j++){
 for($i=0;$i<10;$i++){
-  $page .= $pieces[$i].".";
+  $suggestions .= $pieces[$i].".";
 }
+
+array_push($page[$j], $suggestions);
+
+$countPoint = substr_count($suggestions,".");
+
+$suggestions = "";
+}
+
+echo $page[1];
 
 
 ?>
@@ -66,26 +77,67 @@ for($i=0;$i<10;$i++){
     <?php
 
 ?>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
 
-  <?php
+    <style>
+    .carousel-control-prev {
+      position: absolute;
+      top: 0%;
+      left: -20%;
+      height: 100%;
+      width: 100px;
+      outline: black;
+      background-color: rgba(0, 0, 55, 0.3);
+      background-size: 100%, 100%;
 
-echo $page;
-  
-?>
+      border: 1px solid black;
+    }
+
+    .carousel-control-next {
+      position: absolute;
+      top: 0%;
+      left: 110%;
+      height: 100%;
+      width: 100px;
+      outline: black;
+      background-color: rgba(0, 0, 55, 0.3);
+      background-size: 100%, 100%;
+
+      border: 1px solid black;
+    }
+    </style>
+
+
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <h1><?php echo $suggestions;?></h1>
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="./img/ico.png" alt="Второй слайд">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="./img/oceanback.jpeg" alt="Третий слайд">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+      </a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 
 
 </body>

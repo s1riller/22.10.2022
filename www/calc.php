@@ -1,11 +1,12 @@
 <?php
 $url = $_SERVER['REQUEST_URI'];
 $url = mb_substr($url,1,strlen($url)-5);
+$c=0;
 if(isset($_POST['submit'])){
   $a=(int)$_POST['first'];
   $b=(int)$_POST['second'];
   $p=(int)$_POST['operation'];
-  $c;
+  $c??0;
   if($p=="1")
   $c=$a+$b;
   else if($p=="2")
